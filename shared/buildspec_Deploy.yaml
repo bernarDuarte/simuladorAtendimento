@@ -1,0 +1,17 @@
+version: "0.2"
+env:
+  git-credential-helper: "yes"
+  shell: bash
+  
+phases:
+  deploy:
+    commands:
+      - ls -lrt
+      - |
+        stage_required=$( jq -r '.deploy_stage_required' ./terraform-infrastructure.json )
+        if [ $stage_required == "false" ]; then
+          echo "skipping DEPLOY stage....."
+          exit 0
+        else
+          terragrunt apply -auto-approve
+        fi

@@ -1,0 +1,16 @@
+version: "0.2"
+env:
+  git-credential-helper: "yes"
+  shell: bash
+  
+phases:
+  Destroy:
+    commands:
+      - |
+        stage_required=$( jq -r '.destroy_stage_required' ./terraform-infrastructure.json )
+        if [ $stage_required == "false" ]; then
+          echo "skipping Destroy stage....."
+          exit 0
+        else
+          terragrunt destroy -auto-approve
+        fi

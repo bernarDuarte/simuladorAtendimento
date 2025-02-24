@@ -1,0 +1,15 @@
+version: "0.2"
+env:
+  git-credential-helper: "yes"
+  shell: bash
+  
+phases:
+  build:
+    commands:
+      - |
+        stage_required=$( jq -r '.build_stage_required' ./terraform-infrastructure.json )
+        if [ $stage_required == "false" ]; then
+          echo "skipping DEPLOY stage....."
+          exit 0
+        else
+          terragrunt plan
