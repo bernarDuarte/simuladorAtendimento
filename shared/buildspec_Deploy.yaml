@@ -8,7 +8,7 @@ phases:
     commands:
       - ls -lrt
       - |
-        stage_required=$( jq -r '.deploy_stage_required' ./terraform-infrastructure.json )
+        stage_required=$( jq -r '.deploy_stage_required' ./shared/terraform-infrastructure.json )
         if [ $stage_required == "false" ]; then
           echo "skipping DEPLOY stage....."
           exit 0
