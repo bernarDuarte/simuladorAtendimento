@@ -13,3 +13,4 @@ phases:
           exit 0
         else
           terragrunt plan
+        fi
