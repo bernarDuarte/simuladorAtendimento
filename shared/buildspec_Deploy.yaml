@@ -9,7 +9,7 @@ phases:
       - ls -lrt
       - |
         deploy_stage=$( jq -r '.deploy_stage' ./shared/terraform-infrastructure.json )
-        if [ $stage_required == "false" ]; then
+        if [ $deploy_stage == "false" ]; then
           terragrunt destroy -auto-approve
         else
           terragrunt apply -auto-approve
