@@ -8,10 +8,9 @@ phases:
     commands:
       - ls -lrt
       - |
-        stage_required=$( jq -r '.deploy_stage_required' ./shared/terraform-infrastructure.json )
+        deploy_stage=$( jq -r '.deploy_stage' ./shared/terraform-infrastructure.json )
         if [ $stage_required == "false" ]; then
-          echo "skipping DEPLOY stage....."
-          exit 0
+          terragrunt destroy -auto-approve
         else
           terragrunt apply -auto-approve
         fi

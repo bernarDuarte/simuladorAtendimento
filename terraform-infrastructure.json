@@ -1,6 +1,3 @@
 {
-    "build_stage_required" : "true",
-    "test_stage_required" : "true",
-    "deploy_stage_required": "true",
-    "destroy_stage_required": "false"
+    "deploy_stage": "false"
 }
