@@ -8,6 +8,13 @@ phases:
     commands:
       - ls -lrt
       - |
+        production=$( jq -r '.production' ./shared/terraform-infrastructure.json )
+        if [ $production == "false" ]; then
+          cd production
+        else
+          cd staging
+        fi
+        ls
         deploy_stage=$( jq -r '.deploy_stage' ./shared/terraform-infrastructure.json )
         if [ $deploy_stage == "false" ]; then
           terragrunt plan -destroy

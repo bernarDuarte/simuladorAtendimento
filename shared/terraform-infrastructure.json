@@ -1,3 +1,4 @@
 {
-    "deploy_stage": "false"
+    "deploy_stage": "true",
+    "production" : "false"
 }
