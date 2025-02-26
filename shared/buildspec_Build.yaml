@@ -9,7 +9,7 @@ phases:
       - ls -lrt
       - |
         production=$( jq -r '.production' ./shared/terraform-infrastructure.json )
-        if [ $production == "false" ]; then
+        if [ $production == "true" ]; then
           cd production
         else
           cd staging
